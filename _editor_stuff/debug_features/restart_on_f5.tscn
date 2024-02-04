@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b413soxw2rb31"]
+
+[ext_resource type="Script" path="res://_editor_stuff/debug_features/restart_on_f5.gd" id="1_visxx"]
+
+[node name="RestartOnF5" type="Node"]
+script = ExtResource("1_visxx")

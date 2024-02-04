@@ -1,0 +1,115 @@
+[gd_scene load_steps=14 format=3 uid="uid://mehcoqiwn03a"]
+
+[ext_resource type="Script" path="res://packed_scenes/player_car/player_car.gd" id="1_sbgvq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3dfmj"]
+bounce = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g28dr"]
+transparency = 1
+albedo_color = Color(0.858824, 0.0392157, 0.0392157, 1)
+metallic = 0.9
+roughness = 0.45
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4qg1"]
+render_priority = -1
+next_pass = SubResource("StandardMaterial3D_g28dr")
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(0, 0.686275, 0.686275, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fkmuf"]
+material = SubResource("StandardMaterial3D_m4qg1")
+size = Vector3(1, 0.8, 1.6)
+
+[sub_resource type="Curve" id="Curve_y8n1i"]
+max_value = 2.0
+_data = [Vector2(0, 0.2), 0.0, 4.09555, 0, 0, Vector2(0.6, 2), -1.23482, -1.23482, 0, 0, Vector2(1, 0.3), -12.3428, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="CurveTexture" id="CurveTexture_jn86c"]
+curve = SubResource("Curve_y8n1i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5rvdc"]
+emission_shape_offset = Vector3(0, -0.35, 0.5)
+emission_shape = 3
+emission_box_extents = Vector3(0.4, 0, 0)
+inherit_velocity_ratio = 0.15
+direction = Vector3(0, 0, 1)
+spread = 7.5
+flatness = 1.0
+gravity = Vector3(0, 0.8, 0)
+scale_curve = SubResource("CurveTexture_jn86c")
+
+[sub_resource type="Gradient" id="Gradient_q0bje"]
+colors = PackedColorArray(0.376471, 0.376471, 0.376471, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c0174"]
+gradient = SubResource("Gradient_q0bje")
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hi2tx"]
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_c0174")
+heightmap_scale = -9.73
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="SphereMesh" id="SphereMesh_nc4vs"]
+material = SubResource("StandardMaterial3D_hi2tx")
+radius = 0.075
+height = 0.15
+radial_segments = 12
+rings = 6
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fqw5r"]
+
+[node name="PlayerCar" type="RigidBody3D"]
+collision_mask = 30
+physics_material_override = SubResource("PhysicsMaterial_3dfmj")
+gravity_scale = 3.0
+angular_damp = 15.0
+script = ExtResource("1_sbgvq")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.075, 0)
+top_level = true
+layers = 2
+mesh = SubResource("BoxMesh_fkmuf")
+
+[node name="Particles" type="GPUParticles3D" parent="Mesh"]
+layers = 2
+emitting = false
+amount = 128
+lifetime = 1.6
+visibility_aabb = AABB(-4, -4.5, -3.5, 8, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_5rvdc")
+draw_pass_1 = SubResource("SphereMesh_nc4vs")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_fqw5r")
+
+[node name="GroundRay" type="RayCast3D" parent="."]
+top_level = true
+target_position = Vector3(0, -1.25, 0)
+collision_mask = 6
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="AbsoluteGroundRay" type="RayCast3D" parent="."]
+top_level = true
+target_position = Vector3(0, -1.25, 0)
+collision_mask = 22
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2, 3)
+top_level = true
+fov = 90.0

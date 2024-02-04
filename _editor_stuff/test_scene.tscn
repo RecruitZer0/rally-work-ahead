@@ -1,0 +1,219 @@
+[gd_scene load_steps=10 format=3 uid="uid://45jcj8tlwuoe"]
+
+[ext_resource type="Texture2D" uid="uid://bl8o0lrhgbrtl" path="res://icon.svg" id="1_wpofo"]
+[ext_resource type="PackedScene" uid="uid://bupom3duu0arq" path="res://assets/models/tracks/test.glb" id="2_q0cl1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cvj3k"]
+albedo_texture = ExtResource("1_wpofo")
+uv1_scale = Vector3(60, 60, 60)
+
+[sub_resource type="Gradient" id="Gradient_j0pkr"]
+offsets = PackedFloat32Array(0.443038, 0.936709)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7f7se"]
+frequency = 0.03
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y0ntn"]
+width = 360
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 0.5
+color_ramp = SubResource("Gradient_j0pkr")
+noise = SubResource("FastNoiseLite_7f7se")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6fj0r"]
+sky_top_color = Color(0, 0.611765, 0.854902, 1)
+sky_horizon_color = Color(0.490196, 0.67451, 0.8, 1)
+sky_curve = 0.1
+sky_cover = SubResource("NoiseTexture2D_y0ntn")
+sun_angle_max = 180.0
+sun_curve = 0.03
+
+[sub_resource type="Sky" id="Sky_rb1nv"]
+sky_material = SubResource("ProceduralSkyMaterial_6fj0r")
+
+[sub_resource type="Environment" id="Environment_h50ri"]
+background_mode = 2
+sky = SubResource("Sky_rb1nv")
+ssao_enabled = true
+ssao_radius = 2.0
+ssao_intensity = 3.0
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+glow_enabled = true
+glow_normalized = true
+glow_bloom = 0.1
+
+[node name="TestScene" type="Node3D"]
+
+[node name="Base" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00120163, -0.081605, -0.000486612)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(100, 0.25, 100)
+material = SubResource("StandardMaterial3D_cvj3k")
+
+[node name="Loop" parent="." instance=ExtResource("2_q0cl1")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -17, 0, 0)
+
+[node name="Bumpy" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.5)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Bumpy"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.95524, -0.0190916, 0)
+use_collision = true
+collision_layer = 8
+radius = 0.3
+height = 3.0
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Bumpy"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4.45524, -0.0190916, 0)
+use_collision = true
+collision_layer = 8
+radius = 0.3
+height = 3.0
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Bumpy"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.95524, -0.0190916, 0)
+use_collision = true
+collision_layer = 8
+radius = 0.3
+height = 3.0
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Bumpy"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.45524, -0.0190916, 0)
+use_collision = true
+collision_layer = 8
+radius = 0.3
+height = 3.0
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="Bumpy"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0447569, -0.0190916, 0)
+use_collision = true
+collision_layer = 8
+radius = 0.3
+height = 3.0
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="Bumpy"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.54476, -0.0190916, 0)
+use_collision = true
+collision_layer = 8
+radius = 0.3
+height = 3.0
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="Bumpy"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.04476, -0.0190916, 0)
+use_collision = true
+collision_layer = 8
+radius = 0.3
+height = 3.0
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="Bumpy"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -4.54476, -0.0190916, 0)
+use_collision = true
+collision_layer = 8
+radius = 0.3
+height = 3.0
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="Bumpy"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -6.04476, -0.0190916, 0)
+use_collision = true
+collision_layer = 8
+radius = 0.3
+height = 3.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h50ri")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shadow_enabled = true
+shadow_opacity = 0.9
+
+[node name="UTurn" type="Node3D" parent="."]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 23.5, 0, -31.5)
+
+[node name="Road" type="CSGBox3D" parent="UTurn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.25, 0)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(3.5, 0.5, 2)
+
+[node name="Road2" type="CSGBox3D" parent="UTurn"]
+transform = Transform3D(0.95035, -0.185295, 0.25, 0.25, 0.933013, -0.258819, -0.185295, 0.308469, 0.933013, 0.25, -0.25, -2)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(3.5, 0.5, 2)
+
+[node name="Road3" type="CSGBox3D" parent="UTurn"]
+transform = Transform3D(0.810518, -0.271861, 0.518799, 0.518799, 0.744351, -0.420463, -0.271861, 0.609945, 0.744351, -0.25, 0.267638, -3.86602)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(3.5, 0.5, 2)
+
+[node name="Road4" type="CSGBox3D" parent="UTurn"]
+transform = Transform3D(0.60618, -0.243802, 0.757038, 0.757038, 0.468659, -0.45525, -0.243802, 0.84907, 0.468659, -1.2876, 1.10856, -5.35472)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(3.5, 0.5, 2)
+
+[node name="Road5" type="CSGBox3D" parent="UTurn"]
+transform = Transform3D(0.374857, -0.10627, 0.920971, 0.920972, 0.156559, -0.356792, -0.10627, 0.981935, 0.156559, -2.80167, 2.01906, -6.29204)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(3.5, 0.5, 2)
+
+[node name="Road6" type="CSGBox3D" parent="UTurn"]
+transform = Transform3D(0.159027, 0.11548, 0.980497, 0.980497, -0.13464, -0.143169, 0.115481, 0.984143, -0.13464, -4.64362, 2.73265, -6.60516)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(3.5, 0.5, 2)
+
+[node name="Road7" type="CSGBox3D" parent="UTurn"]
+transform = Transform3D(-0.0668619, 0.396119, 0.915761, 0.988247, -0.100163, 0.115481, 0.13747, 0.912719, -0.384767, -6.60461, 3.01899, -6.33588)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(3.5, 0.5, 2)
+
+[node name="Road8" type="CSGBox3D" parent="UTurn"]
+transform = Transform3D(-0.273865, 0.630854, 0.725962, 0.961159, 0.206389, 0.183242, -0.0342313, 0.747948, -0.662874, -8.43613, 2.78802, -5.56635)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(3.5, 0.5, 2)
+
+[node name="Road9" type="CSGBox3D" parent="UTurn"]
+transform = Transform3D(-0.504669, 0.730581, 0.459957, 0.857527, 0.362633, 0.364891, 0.0997867, 0.578574, -0.809503, -9.88806, 2.42154, -4.2406)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(3.5, 0.5, 2)
+
+[node name="Road10" type="CSGBox3D" parent="UTurn"]
+transform = Transform3D(-0.659418, 0.740729, 0.128408, 0.697689, 0.539365, 0.471503, 0.279997, 0.400506, -0.872466, -10.808, 1.69176, -2.62159)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(3.5, 0.5, 2)
+
+[node name="Road11" type="CSGBox3D" parent="UTurn"]
+transform = Transform3D(-0.919917, 0.371808, -0.124547, 0.274508, 0.837469, 0.472538, 0.279997, 0.400506, -0.872465, -11.0648, 0.748754, -0.876659)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(3.5, 0.5, 2)
+
+[node name="Road12" type="CSGBox3D" parent="UTurn"]
+transform = Transform3D(-0.984802, 0.0846872, -0.151632, 0.079584, 0.996048, 0.0394247, 0.154372, 0.0267578, -0.98765, -10.8157, -0.0527414, 0.868271)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(3.5, 0.5, 2)
