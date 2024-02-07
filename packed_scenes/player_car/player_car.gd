@@ -2,15 +2,16 @@ extends RigidBody3D
 
 @export_enum("keyboard", "gamepad1", "gamepad2", "gamepad3") var listen_to: String = "keyboard"
 @export_category("Car Player")
-@export var acceleration := 55.0
-@export var max_speed := 16.0
+@export var acceleration := 64.0
+@export var max_speed := 24.0
 
 const STEER_ANGLE := 18.0
-const TURN_SPEED := 5.0
-const MESH_OFFSET := Vector3(0, -0.075, 0)
+const TURN_SPEED := 7.5
+const MESH_OFFSET := Vector3(0, -0.6, 0)
 
 
-@onready var mesh: MeshInstance3D = $Mesh
+@onready var mesh: Node3D = $Mesh
+@onready var mesh_parts: Array[Node] = mesh.get_children()
 @onready var collision: CollisionShape3D = $Collision
 @onready var ground_ray: RayCast3D = $GroundRay
 @onready var abs_ground_ray: RayCast3D = $AbsoluteGroundRay
@@ -26,12 +27,17 @@ func _physics_process(_delta: float) -> void:
 	ground_ray.global_position = global_position
 	ground_ray.rotation = mesh.rotation
 	abs_ground_ray.global_position = global_position
-	camera.global_position = global_position + (mesh.basis.y * 2.5) + (mesh.basis.z * 4.5)
+	camera.global_position = global_position + (mesh.basis.y * 4) + (mesh.basis.z * 6.25)
 	camera.rotation = Vector3(mesh.rotation.x - PI/18, mesh.rotation.y, 0)
 	
 	if ground_ray.is_colliding():
 		apply_central_force(-mesh.basis.z * ws_input)
 	linear_velocity = linear_velocity.limit_length(max_speed)
+	for part in mesh_parts:
+		if part.name == "Body": continue
+		part.rotation.x = fmod(part.rotation.x + deg_to_rad(linear_velocity.dot(-mesh.basis.z)), 2*PI)
+		if part.name.begins_with("F"):
+			part.rotation.y = ad_input * 1.75
 
 func _process(delta: float) -> void:
 	_handle_inputs()

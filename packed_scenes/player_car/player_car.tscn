@@ -1,26 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://mehcoqiwn03a"]
+[gd_scene load_steps=12 format=3 uid="uid://mehcoqiwn03a"]
 
 [ext_resource type="Script" path="res://packed_scenes/player_car/player_car.gd" id="1_sbgvq"]
+[ext_resource type="PackedScene" uid="uid://ciotp56uvib5o" path="res://assets/models/player_car/player car.glb" id="2_w2y0y"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3dfmj"]
 bounce = 0.2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g28dr"]
-transparency = 1
-albedo_color = Color(0.858824, 0.0392157, 0.0392157, 1)
-metallic = 0.9
-roughness = 0.45
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4qg1"]
-render_priority = -1
-next_pass = SubResource("StandardMaterial3D_g28dr")
-no_depth_test = true
-shading_mode = 0
-albedo_color = Color(0, 0.686275, 0.686275, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_fkmuf"]
-material = SubResource("StandardMaterial3D_m4qg1")
-size = Vector3(1, 0.8, 1.6)
 
 [sub_resource type="Curve" id="Curve_y8n1i"]
 max_value = 2.0
@@ -35,7 +19,7 @@ curve = SubResource("Curve_y8n1i")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5rvdc"]
 emission_shape_offset = Vector3(0, -0.35, 0.5)
 emission_shape = 3
-emission_box_extents = Vector3(0.4, 0, 0)
+emission_box_extents = Vector3(0.9, 0, 0)
 inherit_velocity_ratio = 0.15
 direction = Vector3(0, 0, 1)
 spread = 7.5
@@ -63,12 +47,13 @@ particles_anim_loop = false
 
 [sub_resource type="SphereMesh" id="SphereMesh_nc4vs"]
 material = SubResource("StandardMaterial3D_hi2tx")
-radius = 0.075
-height = 0.15
+radius = 0.125
+height = 0.25
 radial_segments = 12
 rings = 6
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fqw5r"]
+radius = 1.25
 
 [node name="PlayerCar" type="RigidBody3D"]
 collision_mask = 30
@@ -77,11 +62,8 @@ gravity_scale = 3.0
 angular_damp = 15.0
 script = ExtResource("1_sbgvq")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.075, 0)
+[node name="Mesh" parent="." instance=ExtResource("2_w2y0y")]
 top_level = true
-layers = 2
-mesh = SubResource("BoxMesh_fkmuf")
 
 [node name="Particles" type="GPUParticles3D" parent="Mesh"]
 layers = 2
@@ -97,14 +79,14 @@ shape = SubResource("SphereShape3D_fqw5r")
 
 [node name="GroundRay" type="RayCast3D" parent="."]
 top_level = true
-target_position = Vector3(0, -1.25, 0)
+target_position = Vector3(0, -3, 0)
 collision_mask = 6
 hit_from_inside = true
 collide_with_areas = true
 
 [node name="AbsoluteGroundRay" type="RayCast3D" parent="."]
 top_level = true
-target_position = Vector3(0, -1.25, 0)
+target_position = Vector3(0, -3, 0)
 collision_mask = 22
 hit_from_inside = true
 collide_with_areas = true
