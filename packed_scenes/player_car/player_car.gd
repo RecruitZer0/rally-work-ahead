@@ -1,3 +1,4 @@
+@tool
 extends RigidBody3D
 
 @export_enum("keyboard", "gamepad1", "gamepad2", "gamepad3") var listen_to: String = "keyboard"
@@ -18,9 +19,8 @@ const MESH_OFFSET := Vector3(0, -0.6, 0)
 @onready var camera: Camera3D = $Camera
 
 
-var ws_input: float
-var ad_input: float
-
+var ws_input := 0.0
+var ad_input := 0.0
 
 func _physics_process(_delta: float) -> void:
 	mesh.global_position = global_position + MESH_OFFSET
@@ -40,6 +40,10 @@ func _physics_process(_delta: float) -> void:
 			part.rotation.y = ad_input * 1.75
 
 func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		mesh.rotation = rotation
+		return
+	
 	_handle_inputs()
 	_particles()
 	

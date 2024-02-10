@@ -63,6 +63,7 @@ angular_damp = 15.0
 script = ExtResource("1_sbgvq")
 
 [node name="Mesh" parent="." instance=ExtResource("2_w2y0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
 top_level = true
 
 [node name="Particles" type="GPUParticles3D" parent="Mesh"]
@@ -92,6 +93,6 @@ hit_from_inside = true
 collide_with_areas = true
 
 [node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2, 3)
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 4, 6.25)
 top_level = true
 fov = 90.0
