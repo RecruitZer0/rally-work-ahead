@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://db5dw4grqd64i"]
+
+[ext_resource type="Script" path="res://classes/track_piece.gd" id="1_ua7oj"]
+[ext_resource type="Script" path="res://classes/track_point.gd" id="2_ag8m7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pjqx4"]
+size = Vector3(18, 0.5, 36)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w8oob"]
+size = Vector3(18, 0.5, 36)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qwwh8"]
+size = Vector3(48, 0.5, 18)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4jkfy"]
+size = Vector3(48, 0.5, 18)
+
+[node name="90Turn" type="StaticBody3D" node_paths=PackedStringArray("attach_points", "powerup_points")]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_ua7oj")
+attach_points = [NodePath("Attach1"), NodePath("Attach2")]
+powerup_points = [NodePath("PowerUp1"), NodePath("PowerUp2"), NodePath("PowerUp3"), NodePath("PowerUp4"), NodePath("PowerUp5")]
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 27)
+layers = 4
+mesh = SubResource("BoxMesh_pjqx4")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 27)
+shape = SubResource("BoxShape3D_w8oob")
+
+[node name="Mesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -0.25, 0)
+layers = 4
+mesh = SubResource("BoxMesh_qwwh8")
+
+[node name="Collision2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -0.25, 0)
+shape = SubResource("BoxShape3D_4jkfy")
+
+[node name="Attach1" type="Marker3D" parent="."]
+transform = Transform3D(-4.37112e-08, 0, 1, 0, 1, 0, -1, 0, -4.37112e-08, 39, 0, 0)
+script = ExtResource("2_ag8m7")
+
+[node name="Attach2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 5.4041e-07, 0, 1, 0, -5.4041e-07, 0, 1, 0, 0, 45)
+script = ExtResource("2_ag8m7")
+
+[node name="PowerUp1" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -6, 0, -6)
+script = ExtResource("2_ag8m7")
+
+[node name="PowerUp2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3, 0, -3)
+script = ExtResource("2_ag8m7")
+
+[node name="PowerUp3" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+script = ExtResource("2_ag8m7")
+
+[node name="PowerUp4" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3, 0, 3)
+script = ExtResource("2_ag8m7")
+
+[node name="PowerUp5" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 6, 0, 6)
+script = ExtResource("2_ag8m7")
