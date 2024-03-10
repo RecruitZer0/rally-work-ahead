@@ -1,14 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://duxgjdxwnwjp1"]
+[gd_scene load_steps=6 format=3 uid="uid://duxgjdxwnwjp1"]
 
 [ext_resource type="PackedScene" uid="uid://45jcj8tlwuoe" path="res://_editor_stuff/test_scene.tscn" id="1_66ask"]
 [ext_resource type="PackedScene" uid="uid://mehcoqiwn03a" path="res://packed_scenes/player_car/player_car.tscn" id="2_0sfi3"]
 [ext_resource type="PackedScene" uid="uid://b413soxw2rb31" path="res://_editor_stuff/debug_features/restart_on_f5.tscn" id="3_4xhff"]
+[ext_resource type="PackedScene" uid="uid://064astriqvok" path="res://_editor_stuff/debug_features/tab_camera.tscn" id="4_icfm6"]
+[ext_resource type="PackedScene" uid="uid://dlkdu7pdhqn51" path="res://_editor_stuff/debug_features/car_debug_info.tscn" id="5_x6wj1"]
 
 [node name="Main" type="Node"]
 
 [node name="TestScene" parent="." instance=ExtResource("1_66ask")]
 
 [node name="PlayerCar" parent="." instance=ExtResource("2_0sfi3")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.1588, 1, 7.36722)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16, 1.25, 7)
 
 [node name="RestartOnF5" parent="." instance=ExtResource("3_4xhff")]
+
+[node name="TabCamera" parent="." instance=ExtResource("4_icfm6")]
+transform = Transform3D(0.707144, -0.187921, 0.68164, -6.32017e-08, 0.964035, 0.265774, -0.707069, -0.187941, 0.681712, 62.2097, 29.2548, 33.9326)
+
+[node name="CarDebugInfo" parent="." node_paths=PackedStringArray("car") instance=ExtResource("5_x6wj1")]
+car = NodePath("../PlayerCar")
