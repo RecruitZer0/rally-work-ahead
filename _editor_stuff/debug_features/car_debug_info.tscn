@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlkdu7pdhqn51"]
+
+[ext_resource type="Script" path="res://_editor_stuff/debug_features/car_debug_info.gd" id="1_1pytt"]
+
+[node name="CarDebugInfo" type="Label"]
+offset_right = 1.0
+offset_bottom = 23.0
+script = ExtResource("1_1pytt")
