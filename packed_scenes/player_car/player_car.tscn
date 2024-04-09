@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://mehcoqiwn03a"]
+[gd_scene load_steps=14 format=3 uid="uid://mehcoqiwn03a"]
 
 [ext_resource type="Script" path="res://packed_scenes/player_car/player_car.gd" id="1_sbgvq"]
 [ext_resource type="PackedScene" uid="uid://ciotp56uvib5o" path="res://assets/models/player_car/player car.glb" id="2_w2y0y"]
+[ext_resource type="Script" path="res://packed_scenes/player_car/camera_script.gd" id="3_rwbwg"]
 [ext_resource type="Script" path="res://packed_scenes/player_car/nitro_script.gd" id="3_ywpr4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3dfmj"]
@@ -60,7 +61,7 @@ radius = 1.25
 collision_mask = 30
 physics_material_override = SubResource("PhysicsMaterial_3dfmj")
 gravity_scale = 3.5
-angular_damp = 15.0
+angular_damp = 40.0
 script = ExtResource("1_sbgvq")
 
 [node name="Mesh" parent="." instance=ExtResource("2_w2y0y")]
@@ -91,11 +92,13 @@ target_position = Vector3(0, -4, 0)
 collision_mask = 18
 collide_with_areas = true
 
-[node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 4, 6.25)
+[node name="Camera" type="Node3D" parent="."]
 top_level = true
+script = ExtResource("3_rwbwg")
+
+[node name="Camera" type="Camera3D" parent="Camera"]
+current = true
 fov = 90.0
 
 [node name="Nitro" type="Node" parent="."]
 script = ExtResource("3_ywpr4")
-falloff_start = null

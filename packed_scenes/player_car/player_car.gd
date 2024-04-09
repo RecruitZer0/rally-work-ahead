@@ -14,7 +14,7 @@ const MESH_OFFSET := Vector3(0, -0.6, 0)
 @onready var mesh: Node3D = $Mesh
 @onready var mesh_parts: Array[Node] = mesh.get_children()
 @onready var collision: CollisionShape3D = $Collision
-@onready var camera: Camera3D = $Camera
+@onready var camera: Node3D = $Camera
 @onready var ground_ray: RayCast3D = $GroundRay
 @onready var abs_ground_ray: RayCast3D = $AbsoluteGroundRay
 @onready var nitro: Node = $Nitro
@@ -35,9 +35,9 @@ func _physics_process(delta: float) -> void:
 	
 	for part in mesh_parts:
 		if part.name == "Body": continue
-		part.rotation.x = fmod(part.rotation.x + deg_to_rad(linear_velocity.dot(-mesh.basis.z)), 2*PI)
+		part.rotation.x = fmod(part.rotation.x + deg_to_rad(linear_velocity.dot(mesh.basis.z)), 2*PI)
 		if part.name.begins_with("F"):
-			part.rotation.y = ad_input * 1.75
+			part.rotation.y = ad_input * deg_to_rad(STEER_ANGLE) * 2
 
 func _process(delta: float) -> void:
 	_children_positions()
@@ -67,8 +67,8 @@ func _children_positions() -> void:
 	ground_ray.global_position = global_position
 	ground_ray.rotation = mesh.rotation
 	abs_ground_ray.global_position = global_position
-	camera.global_position = global_position + (mesh.basis.y * 4) + (mesh.basis.z * 6.25)
-	camera.rotation = Vector3(mesh.rotation.x - PI/18, mesh.rotation.y, 0)
+	camera.global_position = global_position
+	camera.rotation = mesh.rotation
 
 func _align_mesh_to_ground(delta: float) -> void:
 	var ground_normal: Vector3
