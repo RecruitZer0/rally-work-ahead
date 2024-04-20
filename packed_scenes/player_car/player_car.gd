@@ -1,5 +1,5 @@
 @tool
-extends RigidBody3D
+class_name PlayerCar extends RigidBody3D
 
 @export_enum("keyboard", "gamepad1", "gamepad2", "gamepad3") var listen_to: String = "keyboard"
 @export_category("Car Player")
@@ -14,10 +14,11 @@ const MESH_OFFSET := Vector3(0, -0.6, 0)
 @onready var mesh: Node3D = $Mesh
 @onready var mesh_parts: Array[Node] = mesh.get_children()
 @onready var collision: CollisionShape3D = $Collision
-@onready var camera: Node3D = $Camera
+@onready var camera: PlayerCamera = $Camera
 @onready var ground_ray: RayCast3D = $GroundRay
 @onready var abs_ground_ray: RayCast3D = $AbsoluteGroundRay
-@onready var nitro: Node = $Nitro
+@onready var nitro: PlayerNitro = $Nitro
+@onready var powerup: PlayerPower = $Power
 
 
 var ws_input := 0.0
@@ -91,7 +92,7 @@ func _handle_particles() -> void:
 	var particles = mesh.get_node("Particles") as GPUParticles3D
 	if not particles: return
 	
-	if not linear_velocity.is_equal_approx(Vector3.ZERO) and ws_input and ground_ray.is_colliding():
+	if not linear_velocity.is_equal_approx(Vector3.ZERO) and ws_input > 0 and ground_ray.is_colliding():
 		particles.emitting = true
 	else:
 		particles.emitting = false

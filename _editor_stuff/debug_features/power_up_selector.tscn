@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfa1u0ed0wx6v"]
+
+[ext_resource type="Script" path="res://_editor_stuff/debug_features/power_up_selector.gd" id="1_np4y7"]
+
+[node name="PowerUpSelector" type="HBoxContainer"]
+script = ExtResource("1_np4y7")
+
+[node name="ActivePower" type="OptionButton" parent="."]
+layout_mode = 2
+focus_mode = 0
+
+[node name="Separator" type="VSeparator" parent="."]
+layout_mode = 2
+
+[node name="StoredPower" type="OptionButton" parent="."]
+layout_mode = 2
+focus_mode = 0
+
+[connection signal="item_selected" from="ActivePower" to="." method="_change_active"]
+[connection signal="item_selected" from="StoredPower" to="." method="_change_stored"]

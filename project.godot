@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 TrackPlacing="*res://globals/track_placing.gd"
+PowerData="*res://globals/power_data.gd"
 
 [file_customization]
 

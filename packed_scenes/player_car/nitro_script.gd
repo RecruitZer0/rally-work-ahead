@@ -1,5 +1,5 @@
 @tool
-extends Node
+class_name PlayerNitro extends Node
 
 @export_category("Nitro")
 @export_range(0, 100, 0.1, "suffix:%") var fuel := 100.0
@@ -10,9 +10,10 @@ extends Node
 var activated := false
 var replenish_cooldown := 3.0
 
+
 const BASE_POWER := 50.0
 
-@onready var parent: RigidBody3D = get_parent()
+@onready var parent: PlayerCar = get_parent()
 
 
 func _physics_process(delta: float) -> void:
