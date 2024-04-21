@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://mehcoqiwn03a"]
 
 [ext_resource type="Script" path="res://packed_scenes/player_car/player_car.gd" id="1_sbgvq"]
-[ext_resource type="PackedScene" uid="uid://ciotp56uvib5o" path="res://assets/models/player_car/player car.glb" id="2_w2y0y"]
+[ext_resource type="PackedScene" uid="uid://bl5r8duc81tkg" path="res://assets/models/player_car/player_car.glb" id="2_bwipk"]
 [ext_resource type="Script" path="res://packed_scenes/player_car/camera_script.gd" id="3_rwbwg"]
 [ext_resource type="Script" path="res://packed_scenes/player_car/nitro_script.gd" id="3_ywpr4"]
 [ext_resource type="Script" path="res://packed_scenes/player_car/powers_script.gd" id="5_d76dp"]
@@ -65,7 +65,7 @@ gravity_scale = 3.5
 angular_damp = 40.0
 script = ExtResource("1_sbgvq")
 
-[node name="Mesh" parent="." instance=ExtResource("2_w2y0y")]
+[node name="Mesh" parent="." instance=ExtResource("2_bwipk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
 top_level = true
 

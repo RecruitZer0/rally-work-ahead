@@ -17,7 +17,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16, 1.
 [node name="RestartOnF5" parent="." instance=ExtResource("3_4xhff")]
 
 [node name="TabCamera" parent="." instance=ExtResource("4_icfm6")]
-transform = Transform3D(0.707144, -0.187921, 0.68164, -6.32017e-08, 0.964035, 0.265774, -0.707069, -0.187941, 0.681712, 62.2097, 29.2548, 33.9326)
+transform = Transform3D(0.707144, -0.187921, 0.68164, -6.32017e-08, 0.964035, 0.265775, -0.707069, -0.187941, 0.681712, 62.2097, 3.2548, 33.9326)
 
 [node name="CarDebugInfo" parent="." node_paths=PackedStringArray("car") instance=ExtResource("5_x6wj1")]
 car = NodePath("../PlayerCar")

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by3h8dg3mj46v"
-path.s3tc="res://.godot/imported/player car_wheel_3.png-4bc34c3bd7b6e070e0ddf585ee43f988.s3tc.ctex"
+uid="uid://bhoqfmt3nljnw"
+path.s3tc="res://.godot/imported/player_car_box.png-b7089982413be0820436a94f364b3aca.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://assets/models/player_car/player car_wheel_3.png"
-dest_files=["res://.godot/imported/player car_wheel_3.png-4bc34c3bd7b6e070e0ddf585ee43f988.s3tc.ctex"]
+source_file="res://assets/models/player_car/player_car_box.png"
+dest_files=["res://.godot/imported/player_car_box.png-b7089982413be0820436a94f364b3aca.s3tc.ctex"]
 
 [params]
 

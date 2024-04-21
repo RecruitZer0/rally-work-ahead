@@ -13,6 +13,7 @@ func _process(_delta: float) -> void:
 	desired_position = default_position
 	desired_position.z += root.linear_velocity.dot(root.mesh.basis.z) / 20
 	desired_position.x += root.linear_velocity.dot(root.mesh.basis.x) / 12
+	desired_position.y -= root.linear_velocity.dot(root.mesh.basis.y) / 20
 	desired_rotation = -atan2(desired_position.z, desired_position.x) + PI/2
 	
 	var tween := create_tween().set_parallel().set_trans(Tween.TRANS_SINE)

@@ -123,7 +123,7 @@ environment = SubResource("Environment_h50ri")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 shadow_enabled = true
-shadow_opacity = 0.9
+shadow_opacity = 0.75
 
 [node name="UTurn" type="Node3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 3.8637, -1.03528, 0, 1.03528, 3.8637, 51.2614, 0.575214, -50.6146)

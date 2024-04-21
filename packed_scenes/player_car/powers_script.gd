@@ -7,7 +7,7 @@ class_name PlayerPower extends Node
 
 @onready var parent: PlayerCar = get_parent()
 
-signal consumed_power(player: PlayerCar, power: int)
+signal consumed_power(car: PlayerCar, power: PowerData.Powers)
 
 func consume_power():
 	var used_power := active_power

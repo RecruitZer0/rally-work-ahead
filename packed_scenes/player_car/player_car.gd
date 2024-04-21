@@ -31,14 +31,10 @@ func _physics_process(delta: float) -> void:
 	
 	
 	speed_limit = move_toward(speed_limit, max_speed + (max_speed * nitro.get_nitro_force() * nitro.force_multiplier), acceleration * delta)
-	linear_velocity = linear_velocity.limit_length(speed_limit)
-	
-	
-	for part in mesh_parts:
-		if part.name == "Body": continue
-		part.rotation.x = fmod(part.rotation.x + deg_to_rad(linear_velocity.dot(mesh.basis.z)), 2*PI)
-		if part.name.begins_with("F"):
-			part.rotation.y = ad_input * deg_to_rad(STEER_ANGLE) * 2
+	var linear_speed_limit := (linear_velocity * Vector3(1, 0, 1)).limit_length(speed_limit)
+	linear_velocity.x = linear_speed_limit.x
+	linear_velocity.y = clampf(linear_velocity.y, -speed_limit, speed_limit)
+	linear_velocity.z = linear_speed_limit.z
 
 func _process(delta: float) -> void:
 	_children_positions()
@@ -48,6 +44,7 @@ func _process(delta: float) -> void:
 	
 	_handle_inputs()
 	_handle_particles()
+	_handle_animations()
 	
 	#print(linear_velocity.dot(-mesh.basis.z))
 	#print(speed_limit)
@@ -96,3 +93,28 @@ func _handle_particles() -> void:
 		particles.emitting = true
 	else:
 		particles.emitting = false
+
+func _handle_animations() -> void:
+	for part in mesh_parts:
+		if part.name == "Body":
+			continue
+		if part.name.begins_with("Wheel"):
+			part.rotation.x = fmod(part.rotation.x + deg_to_rad(linear_velocity.dot(mesh.basis.z)), 2*PI)
+			if part.name.begins_with("WheelF"):
+				part.rotation.y = move_toward(part.rotation.y, Input.get_axis(listen_to + "_right", listen_to + "_left") * deg_to_rad(STEER_ANGLE), get_process_delta_time() * 5)
+		if part.name.begins_with("Cargo"):
+			var offset: float
+			var lift := linear_velocity.dot(mesh.basis.y) / speed_limit
+			match part.name:
+				"CargoBase":
+					offset = 1.4
+					part.position.y = clampf(offset - (lift / 2), offset, INF)
+				"CargoBox1":
+					offset = 1.605
+					part.position.y = clampf(offset - lift, offset, INF)
+				"CargoBox2":
+					offset = 1.525
+					part.position.y = clampf(offset - lift, offset, INF)
+				"CargoBox3":
+					offset = 1.485
+					part.position.y = clampf(offset - lift, offset, INF) 

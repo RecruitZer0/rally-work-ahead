@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ciotp56uvib5o"
-path="res://.godot/imported/player car.glb-636ce39158ceae99418cad5e2241b423.scn"
+uid="uid://bl5r8duc81tkg"
+path="res://.godot/imported/player_car.glb-7769fc1ddf7482a7dc1acd61f2397bfb.scn"
 
 [deps]
 
-source_file="res://assets/models/player_car/player car.glb"
-dest_files=["res://.godot/imported/player car.glb-636ce39158ceae99418cad5e2241b423.scn"]
+source_file="res://assets/models/player_car/player_car.glb"
+dest_files=["res://.godot/imported/player_car.glb-7769fc1ddf7482a7dc1acd61f2397bfb.scn"]
 
 [params]
 
-nodes/root_type=""
-nodes/root_name=""
+nodes/root_type="Node3D"
+nodes/root_name="Mesh"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=true
